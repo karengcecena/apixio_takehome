@@ -88,15 +88,32 @@ function renderCustomers(customers=customer_data) {
         event.preventDefault();
         const searchInput = document.getElementById("search-input").value;
 
-        const filteredCustomers = customer_data.filter(customer => {
-            // Check if customer has pets
-            const hasPets = customer.Pets;
-            // Check if customer pet type or name matches the search value
-            const petMatch = hasPets && customer.Pets.some(pet => pet.Name.toLowerCase().includes(searchInput) || pet.type.toLowerCase().includes(searchInput));
-            return petMatch;
-        });
-        
-        renderCustomers(filteredCustomers);
+        if (searchInput) {
+             // validate search input using regular expression
+            const regex = /^[a-zA-Z]+$/;
+            const errorMessage = document.getElementById("error-message");
+            if (!regex.test(searchInput) && searchInput) {
+                errorMessage.innerText = "Search input can only contain alphabetic characters.";
+                return;
+            }
+
+            errorMessage.innerText = ""; // clear any previous error message
+
+            const filteredCustomers = customer_data.filter(customer => {
+                // Check if customer has pets
+                const hasPets = customer.Pets;
+                // Check if customer pet type or name matches the search value
+                const petMatch = hasPets && customer.Pets.some(pet => pet.Name.toLowerCase().includes(searchInput) || pet.type.toLowerCase().includes(searchInput));
+                return petMatch;
+            });
+            
+            renderCustomers(filteredCustomers);
+        } else {
+            const errorMessage = document.getElementById("error-message");
+            errorMessage.innerText = ""; // clear any previous error message
+
+            renderCustomers();
+        } 
     });
 
     const customerRow = document.createElement("tr");
