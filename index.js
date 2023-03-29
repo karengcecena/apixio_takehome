@@ -103,7 +103,7 @@ function renderCustomers(customers=customer_data) {
                 // Check if customer has pets
                 const hasPets = customer.Pets;
                 // Check if customer pet type or name matches the search value
-                const petMatch = hasPets && customer.Pets.some(pet => pet.Name.toLowerCase().includes(searchInput) || pet.type.toLowerCase().includes(searchInput));
+                const petMatch = hasPets && customer.Pets.some(pet => pet.Name.toLowerCase().includes(searchInput.toLowerCase()) || pet.type.toLowerCase().includes(searchInput.toLowerCase()));
                 return petMatch;
             });
             
