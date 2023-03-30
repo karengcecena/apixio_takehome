@@ -84,8 +84,10 @@ function renderCustomers(customers=customer_data) {
     // Code to filter customers based on search input value
     const searchForm = document.getElementById("search-form");
 
+    // Listen for search button click
     searchForm.addEventListener("submit", function(event) {
         event.preventDefault();
+        // Grab search value after click
         const searchInput = document.getElementById("search-input").value;
 
         if (searchInput) {
@@ -99,6 +101,7 @@ function renderCustomers(customers=customer_data) {
 
             errorMessage.innerText = ""; // clear any previous error message
 
+            // Filter customers based on search value
             const filteredCustomers = customer_data.filter(customer => {
                 // Check if customer has pets
                 const hasPets = customer.Pets;
@@ -107,12 +110,11 @@ function renderCustomers(customers=customer_data) {
                 return petMatch;
             });
             
+            // Render a new customer table based on filtered customers
             renderCustomers(filteredCustomers);
         } else {
             const errorMessage = document.getElementById("error-message");
             errorMessage.innerText = ""; // clear any previous error message
-
-            renderCustomers();
         } 
     });
 
