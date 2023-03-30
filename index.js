@@ -91,11 +91,13 @@ function renderCustomers(customers=customer_data) {
         const searchInput = document.getElementById("search-input").value;
 
         if (searchInput) {
-             // validate search input using regular expression
+            // validate search input using regular expression
             const regex = /^[a-zA-Z]+$/;
             const errorMessage = document.getElementById("error-message");
-            if (!regex.test(searchInput) && searchInput) {
+            if (!regex.test(searchInput)) {
                 errorMessage.innerText = "Search input can only contain alphabetic characters.";
+                // Reset customers to all
+                renderCustomers();
                 return;
             }
 
@@ -113,8 +115,11 @@ function renderCustomers(customers=customer_data) {
             // Render a new customer table based on filtered customers
             renderCustomers(filteredCustomers);
         } else {
+            // Remove error message when search is blank and reset customers to all
             const errorMessage = document.getElementById("error-message");
             errorMessage.innerText = ""; // clear any previous error message
+        
+            renderCustomers();
         } 
     });
 
