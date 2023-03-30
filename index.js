@@ -170,7 +170,7 @@ function renderPetsModal(customer) {
   const modalTitle = document.getElementById("petModalLabel");
   modalTitle.innerHTML = `${customer.Name}'s Pets`;
 
-  // Add the pets table
+  // Add the pets table header
   const petsTable = document.getElementById("pet-table");
   petsTable.innerHTML = "<th>Type</th><th>Name</th>";
 
