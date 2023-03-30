@@ -141,7 +141,6 @@ function renderCustomers(customers=customer_data) {
     customerRow.appendChild(colorCell);
 
     if (customer.Pets) {
-
         // Add customer pets button
         const petsCell = document.createElement("td");
         const petsButton = document.createElement("button");
@@ -153,6 +152,7 @@ function renderCustomers(customers=customer_data) {
         });
         petsCell.appendChild(petsButton);
         customerRow.appendChild(petsCell);
+
     } else {
         // Add filler cell
         const petsCell = document.createElement("td");
@@ -248,9 +248,6 @@ function renderPetsModal(customer) {
 
     petsTable.appendChild(petRow);
   });
-
-  // Add the modal to the page
-  document.body.appendChild(petModal);
 
   // Show the modal
   const modal = new bootstrap.Modal(petModal);
