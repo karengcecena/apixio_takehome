@@ -74,8 +74,7 @@ function renderCustomers(customers=customer_data) {
 
   // Add table headers
   const tableHeaders = document.createElement("tr");
-  tableHeaders.innerHTML =
-    "<th>Name</th><th>Date of Birth</th><th>Favorite Color</th><th>Pets</th>";
+  tableHeaders.innerHTML = "<th>Name</th><th>Date of Birth</th><th>Favorite Color</th><th>Pets</th>";
   customerTable.appendChild(tableHeaders);
 
   // Add rows for each customer
@@ -166,54 +165,14 @@ function renderCustomers(customers=customer_data) {
 
 // Render the pets modal for a given customer
 function renderPetsModal(customer) {
+  const petModal = document.getElementById("petModal");
 
-  // Create the modal element
-  const petModal = document.createElement("div");
-  petModal.classList.add("modal", "fade");
-  petModal.id = `petModal-${customer.Id}`;
-  petModal.tabIndex = "-1";
-  petModal.setAttribute("aria-labelledby", `petModalLabel-${customer.Id}`);
-
-  // Add the modal dialog element
-  const modalDialog = document.createElement("div");
-  modalDialog.classList.add("modal-dialog", "modal-dialog-centered");
-  petModal.appendChild(modalDialog);
-
-  // Add the modal content element
-  const modalContent = document.createElement("div");
-  modalContent.classList.add("modal-content");
-  modalDialog.appendChild(modalContent);
-
-  // Add the modal header element
-  const modalHeader = document.createElement("div");
-  modalHeader.classList.add("modal-header");
-  modalContent.appendChild(modalHeader);
-
-  // Add the modal title element
-  const modalTitle = document.createElement("h5");
-  modalTitle.classList.add("modal-title");
-  modalTitle.id = `petModalLabel-${customer.Id}`;
-  modalTitle.textContent = `${customer.Name}'s Pets`;
-  modalHeader.appendChild(modalTitle);
-
-  // Add the modal close button
-  const modalCloseButton = document.createElement("button");
-  modalCloseButton.type = "button";
-  modalCloseButton.classList.add("btn-close");
-  modalCloseButton.setAttribute("data-bs-dismiss", "modal");
-  modalHeader.appendChild(modalCloseButton);
-
-  // Add the modal body element
-  const modalBody = document.createElement("div");
-  modalBody.classList.add("modal-body");
-  modalContent.appendChild(modalBody);
+  const modalTitle = document.getElementById("petModalLabel");
+  modalTitle.innerHTML = `${customer.Name}'s Pets`;
 
   // Add the pets table
-  const petsTable = document.createElement("table");
-  petsTable.classList.add("table");
-  petsTable.innerHTML =
-    "<thead><tr><th>Type</th><th>Name</th></tr></thead><tbody></tbody>";
-  modalBody.appendChild(petsTable);
+  const petsTable = document.getElementById("pet-table");
+  petsTable.innerHTML = "<th>Type</th><th>Name</th>";
 
   // Sort pets alphabetically by type and/or name
   customer.Pets.sort(function(a, b) {
